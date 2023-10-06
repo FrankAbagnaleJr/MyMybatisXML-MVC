@@ -111,5 +111,10 @@ public class UserController {
         return date.toString()+", "+date1.toString();
     }
 
+    @PostMapping("/getInId")
+    String getInId(@RequestBody List<Integer> lists){
+        List<User> list =  userService.getInId(lists);
+        return list.toString();
+    }
 
 }

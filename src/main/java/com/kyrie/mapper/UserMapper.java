@@ -18,4 +18,6 @@ import java.util.List;
 public interface UserMapper extends BaseMapper<User> {
 
     User getById(Long id);
+
+    List<User> getInId(List<Integer> lists);
 }

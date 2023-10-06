@@ -11,6 +11,8 @@ import org.apache.logging.log4j.util.Strings;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 /**
@@ -32,7 +34,7 @@ public class UserServiceImpl implements UserService {
 
         LambdaQueryWrapper<User> lqw = new LambdaQueryWrapper<>();
         lqw.like(Strings.isNotBlank(pageWapper.getName()), User::getName, pageWapper.getName());
-        lqw.ge(pageWapper.getAge()!=null && !"".equals(pageWapper.getAge()), User::getAge, pageWapper.getAge());
+        lqw.ge(pageWapper.getAge() != null && !"".equals(pageWapper.getAge()), User::getAge, pageWapper.getAge());
         lqw.eq(!Objects.isNull(pageWapper.getGender()), User::getGender, pageWapper.getGender());
 
         Page<User> pageResult = userMapper.selectPage(page, lqw);
@@ -43,7 +45,18 @@ public class UserServiceImpl implements UserService {
     @Override
     public User getById(Long id) {
 //        return userMapper.getById(id);
-       return userMapper.selectById(id);
+        return userMapper.selectById(id);
+    }
+
+    @Override
+    public List<User> getInId(List<Integer> lists) {
+//        User user = userMapper.selectById(lists.get(0));
+//        List<User> list = new ArrayList<>();
+//        list.add(user);
+//        return list;
+
+        List<User> list = userMapper.getInId(lists);
+        return list;
     }
 
 }

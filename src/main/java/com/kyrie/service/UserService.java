@@ -5,6 +5,8 @@ import com.kyrie.pojo.page.PageParam;
 import com.kyrie.pojo.page.PageWapper;
 import com.kyrie.pojo.User;
 
+import java.util.List;
+
 /**
  * @auther: jijin
  * @date: 2023/10/4 0:50 周三
@@ -16,4 +18,6 @@ public interface UserService {
     Page<User> pageList(PageParam pageParam, PageWapper pageWapper);
 
     User getById(Long id);
+
+    List<User> getInId(List<Integer> lists);
 }

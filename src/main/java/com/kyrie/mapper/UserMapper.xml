@@ -24,4 +24,17 @@
     </select>
 
 
+    <select id="getInId" resultType="com.kyrie.pojo.User" parameterType="list">
+        select *
+        from tb_kyrie
+        <where>
+            id in
+            <foreach collection="list" open="(" close=")" separator="," item="item">
+                #{item}
+            </foreach>
+        </where>
+        where id in (1,8,12)
+    </select>
+
+
 </mapper>
