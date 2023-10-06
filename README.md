@@ -1,0 +1,3 @@
+这是练习Mybatis中Mapper.xml中自定义sql的
+
+controller一些MVC传参练习
