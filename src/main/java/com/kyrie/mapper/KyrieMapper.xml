@@ -21,30 +21,38 @@
 
 
     <select id="queryByWapper" resultType="com.kyrie.pojo.Kyrie" parameterType="com.kyrie.pojo.DynamicsDto">
-        select <include refid="Base_Column_List"></include>
+        select <include refid="Base_Column_List"/>
         from tb_user
-        where
-        <if test="name != null and name.trim()!='' ">
-            name like '%${name}%'
-        </if>
-        <if test="phone != null ">
-            and phone like '%${phone}%'
-        </if>
-        <if test="email != null ">
-            and email like '%${email}%'
-        </if>
-        <if test="profession != null and profession.trim()!=''">
-            and profession = #{profession}
-        </if>
-        <if test="age != null ">
-            and age = #{age}
-        </if>
-        <if test="gender !=null">
-            and gender = #{gender}
-        </if>
-        <if test="startTime != null and startTime.trim()!=''">
-            and createtime between #{startTime} and #{endTime}
-        </if>
+        <trim prefix="where" prefixOverrides="and|or">
+            <if test="name != null and name!=''">
+                name like '%${name}%'
+            </if>
+            <if test="phone != null and phone!=''">
+                and phone like '%${phone}%'
+            </if>
+            <if test="email != null and email!=''">
+                and email like '%${email}%'
+            </if>
+            <if test="profession != null and profession!=''">
+                and profession = #{profession}
+            </if>
+            <if test="age != null and age!=''">
+                and age >= #{age}
+            </if>
+            <if test="gender !=null and gender!=''">
+                and gender = #{gender}
+            </if>
+            <if test="startTime != null and endTime == null">
+                <![CDATA[ and createtime >= #{startTime} ]]>
+            </if>
+            <if test="startTime == null and endTime != null">
+                <![CDATA[ and createtime <= #{endTime} ]]>
+            </if>
+            <if test="startTime != null and endTime != null">
+                and createtime between #{startTime} and #{endTime}
+            </if>
+        </trim>
+        order by createtime desc
 
     </select>
 
