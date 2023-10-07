@@ -1,3 +1,11 @@
+基于ResultFul风格的接口练习
+
+    1. 接口的统一返回对象
+    2. 接口传参的一些练习
+    3. 全局异常处理器
+    4. mybatis的一些配置
+    5. mapper.xml动态SQL语句的编写
+
 这是练习Mybatis中Mapper.xml中自定义sql的
 
 controller一些MVC传参练习
