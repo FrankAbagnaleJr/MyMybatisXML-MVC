@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.kyrie.mapper.KyrieMapper">
+
+
+    <resultMap id="BaseResultMap" type="com.kyrie.pojo.Kyrie">
+        <id column="id" property="id" />
+        <result column="name" property="name" />
+        <result column="email" property="email" />
+        <result column="profession" property="profession" />
+        <result column="age" property="age" />
+        <result column="gender" property="gender" />
+        <result column="status" property="status" />
+        <result column="createtime" property="createtime" />
+    </resultMap>
+
+
+    <sql id="Base_Column_List">
+        id, name, email, profession, age, gender, status, createtime
+    </sql>
+
+
+    <select id="queryByWapper" resultType="com.kyrie.pojo.Kyrie" parameterType="com.kyrie.pojo.DynamicsDto">
+        select <include refid="Base_Column_List"></include>
+        from tb_user
+        where
+        <if test="name != null and name.trim()!='' ">
+            name like '%${name}%'
+        </if>
+        <if test="phone != null ">
+            and phone like '%${phone}%'
+        </if>
+        <if test="email != null ">
+            and email like '%${email}%'
+        </if>
+        <if test="profession != null and profession.trim()!=''">
+            and profession = #{profession}
+        </if>
+        <if test="age != null ">
+            and age = #{age}
+        </if>
+        <if test="gender !=null">
+            and gender = #{gender}
+        </if>
+        <if test="startTime != null and startTime.trim()!=''">
+            and createtime between #{startTime} and #{endTime}
+        </if>
+
+    </select>
+
+
+</mapper>

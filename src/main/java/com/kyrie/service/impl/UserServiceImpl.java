@@ -2,7 +2,10 @@ package com.kyrie.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.kyrie.mapper.KyrieMapper;
 import com.kyrie.mapper.UserMapper;
+import com.kyrie.pojo.DynamicsDto;
+import com.kyrie.pojo.Kyrie;
 import com.kyrie.pojo.page.PageParam;
 import com.kyrie.pojo.page.PageWapper;
 import com.kyrie.pojo.User;
@@ -26,6 +29,9 @@ import java.util.Objects;
 public class UserServiceImpl implements UserService {
     @Autowired
     UserMapper userMapper;
+
+    @Autowired
+    KyrieMapper kyrieMapper;
 
 
     @Override
@@ -56,6 +62,12 @@ public class UserServiceImpl implements UserService {
 //        return list;
 
         List<User> list = userMapper.getInId(lists);
+        return list;
+    }
+
+    @Override
+    public List<Kyrie> queryByWapper(DynamicsDto dynamicsDto) {
+        List<Kyrie> list =  kyrieMapper.queryByWapper(dynamicsDto);
         return list;
     }
 

@@ -1,6 +1,8 @@
 package com.kyrie.service;
 
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.kyrie.pojo.DynamicsDto;
+import com.kyrie.pojo.Kyrie;
 import com.kyrie.pojo.page.PageParam;
 import com.kyrie.pojo.page.PageWapper;
 import com.kyrie.pojo.User;
@@ -20,4 +22,6 @@ public interface UserService {
     User getById(Long id);
 
     List<User> getInId(List<Integer> lists);
+
+    List<Kyrie> queryByWapper(DynamicsDto dynamicsDto);
 }
